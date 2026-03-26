@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Faarigh</string>
+    <string name="app_name_latin">Faarigh</string>
+    <string name="app_tagline">Free yourself from the noise</string>
+    <string name="accessibility_service_description">Faarigh monitors which apps you open and detects short-form video content to help you make conscious choices about your screen time. All processing happens on your device.</string>
+    <string name="vpn_notification_title">Faarigh DNS Filter Active</string>
+    <string name="vpn_notification_text">Filtering ads, trackers, and explicit content locally</string>
+    <string name="widget_description">Shows screen time, conscious choices, and intentional-use ratio</string>
+    <string name="widget_description_small">Screen time and conscious choices at a glance</string>
+    <string name="widget_description_medium">Screen time, choices, and intentional-use ratio</string>
+    <string name="widget_description_large">Full stats with module status indicators</string>
+    <string name="widget_name_small">Faarigh - Compact</string>
+    <string name="widget_name_medium">Faarigh - Stats</string>
+    <string name="widget_name_large">Faarigh - Full</string>
+</resources>

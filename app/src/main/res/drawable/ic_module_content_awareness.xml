@@ -1,0 +1,28 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+
+    <!-- Simple bold shield outline -->
+    <path
+        android:pathData="M12,2 L4,6 L4,12 C4,17 8,21 12,22 C16,21 20,17 20,12 L20,6 Z"
+        android:fillColor="#C4A8E0"
+        android:fillAlpha="0.3"
+        android:strokeColor="#C4A8E0"
+        android:strokeWidth="2" />
+
+    <!-- Bold eye in center -->
+    <path
+        android:pathData="M8,12 C8,12 10,9 12,9 C14,9 16,12 16,12 C16,12 14,15 12,15 C10,15 8,12 8,12 Z"
+        android:fillColor="#C4A8E0"
+        android:fillAlpha="0.5"
+        android:strokeColor="#C4A8E0"
+        android:strokeWidth="1.5" />
+
+    <!-- Pupil -->
+    <path
+        android:pathData="M11,11 h2 v2 h-2 z"
+        android:fillColor="#C4A8E0" />
+
+</vector>

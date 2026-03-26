@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!--
+        Faarigh App Icon — Retro pixel-art ف with game-pad accent
+        Safe zone: 18-90dp (72x72 safe area)
+        Grid: 4dp pixel blocks
+        Palette: Dark charcoal letter, green accent, amber highlight
+    -->
+
+    <!-- ════ PIXEL ف LETTER ════ -->
+
+    <!-- DOT above ف — pixel square with green glow -->
+    <path android:pathData="M48,22h12v4h-12z" android:fillColor="#5A8A54"/>
+    <path android:pathData="M50,24h8v2h-8z" android:fillColor="#A8D5A2"/>
+
+    <!-- TOP HORIZONTAL BAR -->
+    <path android:pathData="M28,32h52v6h-52z" android:fillColor="#2D2B28"/>
+    <!-- Highlight on top bar -->
+    <path android:pathData="M30,33h48v2h-48z" android:fillColor="#4A4744"/>
+
+    <!-- LEFT VERTICAL STROKE -->
+    <path android:pathData="M28,38h6v32h-6z" android:fillColor="#2D2B28"/>
+    <!-- Left stroke highlight -->
+    <path android:pathData="M30,40h2v28h-2z" android:fillColor="#4A4744"/>
+
+    <!-- BOTTOM BAR (shorter — open right = C shape) -->
+    <path android:pathData="M28,64h36v6h-36z" android:fillColor="#2D2B28"/>
+    <!-- Bottom bar highlight -->
+    <path android:pathData="M30,65h32v2h-32z" android:fillColor="#4A4744"/>
+
+    <!-- TAIL — upward hook at right of bottom bar -->
+    <path android:pathData="M64,56h6v8h-6z" android:fillColor="#2D2B28"/>
+    <path android:pathData="M70,48h6v8h-6z" android:fillColor="#2D2B28"/>
+    <!-- Tail pixel highlight -->
+    <path android:pathData="M66,58h2v4h-2z" android:fillColor="#4A4744"/>
+    <path android:pathData="M72,50h2v4h-2z" android:fillColor="#4A4744"/>
+
+    <!-- ════ RETRO GAME ACCENT — small D-pad in corner ════ -->
+
+    <!-- D-pad center -->
+    <path android:pathData="M74,76h6v6h-6z" android:fillColor="#D4915E"/>
+    <!-- D-pad up -->
+    <path android:pathData="M74,72h6v4h-6z" android:fillColor="#C47D4A"/>
+    <!-- D-pad down -->
+    <path android:pathData="M74,82h6v4h-6z" android:fillColor="#C47D4A"/>
+    <!-- D-pad left -->
+    <path android:pathData="M70,76h4v6h-4z" android:fillColor="#C47D4A"/>
+    <!-- D-pad right -->
+    <path android:pathData="M80,76h4v6h-4z" android:fillColor="#C47D4A"/>
+
+    <!-- Small pixel buttons next to d-pad -->
+    <path android:pathData="M86,74h4v4h-4z" android:fillColor="#5A8A54"/>
+    <path android:pathData="M86,80h4v4h-4z" android:fillColor="#D45D5D"/>
+
+    <!-- ════ PIXEL BORDER ACCENT — corner brackets ════ -->
+    <!-- Top-left bracket -->
+    <path android:pathData="M20,20h4v2h-4z" android:fillColor="#5A8A54"/>
+    <path android:pathData="M20,20h2v4h-2z" android:fillColor="#5A8A54"/>
+    <!-- Top-right bracket -->
+    <path android:pathData="M84,20h4v2h-4z" android:fillColor="#5A8A54"/>
+    <path android:pathData="M86,20h2v4h-2z" android:fillColor="#5A8A54"/>
+    <!-- Bottom-left bracket -->
+    <path android:pathData="M20,86h4v2h-4z" android:fillColor="#5A8A54"/>
+    <path android:pathData="M20,84h2v4h-2z" android:fillColor="#5A8A54"/>
+
+</vector>

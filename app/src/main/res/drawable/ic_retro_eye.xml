@@ -1,0 +1,49 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="96dp"
+    android:height="96dp"
+    android:viewportWidth="96"
+    android:viewportHeight="96">
+
+    <!-- Eye outer shape -->
+    <path
+        android:pathData="M8,48 Q48,16 88,48 Q48,80 8,48 Z"
+        android:fillColor="#9C7EDB"
+        android:fillAlpha="0.15"
+        android:strokeColor="#2D2B28"
+        android:strokeWidth="3" />
+
+    <!-- Iris -->
+    <path
+        android:pathData="M48,48 m-14,0 a14,14 0,1 1,28 0 a14,14 0,1 1,-28 0"
+        android:fillColor="#9C7EDB"
+        android:fillAlpha="0.3"
+        android:strokeColor="#2D2B28"
+        android:strokeWidth="2" />
+
+    <!-- Pupil -->
+    <path
+        android:pathData="M48,48 m-6,0 a6,6 0,1 1,12 0 a6,6 0,1 1,-12 0"
+        android:fillColor="#2D2B28" />
+
+    <!-- Slash line -->
+    <path
+        android:pathData="M20,76 L76,20"
+        android:strokeColor="#9C7EDB"
+        android:strokeWidth="4"
+        android:strokeLineCap="round" />
+
+    <!-- Slash outline for visibility -->
+    <path
+        android:pathData="M20,76 L76,20"
+        android:strokeColor="#2D2B28"
+        android:strokeWidth="6"
+        android:strokeLineCap="round" />
+
+    <!-- Slash colored top layer -->
+    <path
+        android:pathData="M20,76 L76,20"
+        android:strokeColor="#9C7EDB"
+        android:strokeWidth="3.5"
+        android:strokeLineCap="round" />
+
+</vector>

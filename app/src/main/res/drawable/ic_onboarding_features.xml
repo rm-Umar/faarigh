@@ -1,0 +1,128 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="200dp"
+    android:height="200dp"
+    android:viewportWidth="200"
+    android:viewportHeight="200">
+
+    <!-- Background circle -->
+    <path
+        android:pathData="M100,100 m-80,0 a80,80 0,1 1,160 0 a80,80 0,1 1,-160 0"
+        android:fillColor="#F5F0E8"
+        android:fillAlpha="0.5" />
+
+    <!-- Central shield -->
+    <path
+        android:pathData="M100,40 L140,56 L140,90 Q140,120 100,140 Q60,120 60,90 L60,56 Z"
+        android:fillColor="#4CAF50"
+        android:fillAlpha="0.15"
+        android:strokeColor="#2D2B28"
+        android:strokeWidth="3" />
+
+    <!-- Inner shield -->
+    <path
+        android:pathData="M100,50 L132,62 L132,88 Q132,112 100,130 Q68,112 68,88 L68,62 Z"
+        android:fillColor="#4CAF50"
+        android:fillAlpha="0.1"
+        android:strokeColor="#2D2B28"
+        android:strokeWidth="1.5" />
+
+    <!-- Shield checkmark -->
+    <path
+        android:pathData="M86,88 L96,98 L116,76"
+        android:fillColor="#00000000"
+        android:strokeColor="#4CAF50"
+        android:strokeWidth="4"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
+
+    <!-- Module icon: top-left - pause (App Pause) -->
+    <path
+        android:pathData="M40,40 m-14,0 a14,14 0,1 1,28 0 a14,14 0,1 1,-28 0"
+        android:fillColor="#FFB74D"
+        android:fillAlpha="0.2"
+        android:strokeColor="#2D2B28"
+        android:strokeWidth="2" />
+    <path
+        android:pathData="M36,34 L36,46"
+        android:strokeColor="#FFB74D"
+        android:strokeWidth="2.5"
+        android:strokeLineCap="round" />
+    <path
+        android:pathData="M44,34 L44,46"
+        android:strokeColor="#FFB74D"
+        android:strokeWidth="2.5"
+        android:strokeLineCap="round" />
+
+    <!-- Module icon: top-right - block (Shorts Blocker) -->
+    <path
+        android:pathData="M160,40 m-14,0 a14,14 0,1 1,28 0 a14,14 0,1 1,-28 0"
+        android:fillColor="#E57373"
+        android:fillAlpha="0.2"
+        android:strokeColor="#2D2B28"
+        android:strokeWidth="2" />
+    <path
+        android:pathData="M152,48 L168,32"
+        android:strokeColor="#E57373"
+        android:strokeWidth="2.5"
+        android:strokeLineCap="round" />
+
+    <!-- Module icon: bottom-left - eye (Content Awareness) -->
+    <path
+        android:pathData="M36,155 m-14,0 a14,14 0,1 1,28 0 a14,14 0,1 1,-28 0"
+        android:fillColor="#9C7EDB"
+        android:fillAlpha="0.2"
+        android:strokeColor="#2D2B28"
+        android:strokeWidth="2" />
+    <path
+        android:pathData="M28,155 Q36,147 44,155 Q36,163 28,155 Z"
+        android:fillColor="#00000000"
+        android:strokeColor="#9C7EDB"
+        android:strokeWidth="1.5" />
+    <path
+        android:pathData="M36,155 m-3,0 a3,3 0,1 1,6 0 a3,3 0,1 1,-6 0"
+        android:fillColor="#9C7EDB" />
+
+    <!-- Module icon: bottom-right - DNS/globe (DNS Filter) -->
+    <path
+        android:pathData="M164,155 m-14,0 a14,14 0,1 1,28 0 a14,14 0,1 1,-28 0"
+        android:fillColor="#4CAF50"
+        android:fillAlpha="0.2"
+        android:strokeColor="#2D2B28"
+        android:strokeWidth="2" />
+    <path
+        android:pathData="M154,155 L174,155"
+        android:strokeColor="#4CAF50"
+        android:strokeWidth="1.5" />
+    <path
+        android:pathData="M164,145 L164,165"
+        android:strokeColor="#4CAF50"
+        android:strokeWidth="1.5" />
+    <path
+        android:pathData="M164,155 m-8,0 a8,12 0,1 1,16 0 a8,12 0,1 1,-16 0"
+        android:fillColor="#00000000"
+        android:strokeColor="#4CAF50"
+        android:strokeWidth="1" />
+
+    <!-- Connecting dotted lines from icons to shield -->
+    <path
+        android:pathData="M52,48 L68,58"
+        android:strokeColor="#7A756E"
+        android:strokeWidth="1"
+        android:strokeAlpha="0.4" />
+    <path
+        android:pathData="M148,48 L132,58"
+        android:strokeColor="#7A756E"
+        android:strokeWidth="1"
+        android:strokeAlpha="0.4" />
+    <path
+        android:pathData="M48,148 L66,126"
+        android:strokeColor="#7A756E"
+        android:strokeWidth="1"
+        android:strokeAlpha="0.4" />
+    <path
+        android:pathData="M152,148 L134,126"
+        android:strokeColor="#7A756E"
+        android:strokeWidth="1"
+        android:strokeAlpha="0.4" />
+
+</vector>

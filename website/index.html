@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>فارغ — Faarigh | Free from distraction</title>
+  <meta name="description" content="Faarigh is an open-source Android app that helps you use your phone with intention. No accounts. No servers. No tracking.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ----------------------------------------------------------------
+       Base Reset & Variables
+    ---------------------------------------------------------------- */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --cream:        #F5F0E8;
+      --cream-dark:   #EDE8DF;
+      --brown:        #2D2B28;
+      --brown-mid:    #5A5650;
+      --green:        #A8D5A2;
+      --green-dark:   #7BB876;
+      --red:          #D9827A;
+      --yellow:       #E8D5A3;
+      --shadow:       4px 4px 0px #2D2B28;
+      --shadow-sm:    2px 2px 0px #2D2B28;
+      --border:       2px solid #2D2B28;
+      --grid-color:   rgba(45, 43, 40, 0.07);
+      --font:         'JetBrains Mono', 'Courier New', monospace;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font);
+      background-color: var(--cream);
+      color: var(--brown);
+      line-height: 1.6;
+      font-size: 15px;
+
+      /* Grid paper background */
+      background-image:
+        linear-gradient(var(--grid-color) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+      background-size: 32px 32px;
+    }
+
+    /* ----------------------------------------------------------------
+       Typography
+    ---------------------------------------------------------------- */
+    h1, h2, h3, h4 {
+      font-family: var(--font);
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+    }
+
+    h1 { font-size: clamp(2rem, 6vw, 3.5rem); }
+    h2 { font-size: clamp(1.4rem, 4vw, 2rem); }
+    h3 { font-size: 1.1rem; }
+
+    p { max-width: 65ch; }
+
+    a {
+      color: var(--brown);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    a:hover { text-decoration: none; }
+
+    code, pre {
+      font-family: var(--font);
+      font-size: 0.875rem;
+    }
+
+    pre {
+      background: var(--brown);
+      color: var(--cream);
+      padding: 1.25rem 1.5rem;
+      border: var(--border);
+      overflow-x: auto;
+      line-height: 1.7;
+    }
+
+    /* ----------------------------------------------------------------
+       Layout
+    ---------------------------------------------------------------- */
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    section {
+      padding: 5rem 0;
+      border-bottom: var(--border);
+    }
+
+    section:last-of-type {
+      border-bottom: none;
+    }
+
+    .section-label {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      border: var(--border);
+      padding: 0.25rem 0.6rem;
+      margin-bottom: 1.5rem;
+      background: var(--brown);
+      color: var(--cream);
+    }
+
+    /* ----------------------------------------------------------------
+       Buttons
+    ---------------------------------------------------------------- */
+    .btn {
+      display: inline-block;
+      font-family: var(--font);
+      font-size: 0.875rem;
+      font-weight: 700;
+      padding: 0.75rem 1.5rem;
+      border: var(--border);
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform 80ms, box-shadow 80ms;
+      letter-spacing: 0.02em;
+    }
+
+    .btn:hover {
+      text-decoration: none;
+      transform: translate(-1px, -1px);
+      box-shadow: 5px 5px 0px var(--brown);
+    }
+
+    .btn:active {
+      transform: translate(2px, 2px);
+      box-shadow: 2px 2px 0px var(--brown);
+    }
+
+    .btn-primary {
+      background: var(--green);
+      color: var(--brown);
+      box-shadow: var(--shadow);
+    }
+
+    .btn-secondary {
+      background: var(--cream);
+      color: var(--brown);
+      box-shadow: var(--shadow);
+    }
+
+    .btn-dark {
+      background: var(--brown);
+      color: var(--cream);
+      box-shadow: 4px 4px 0px var(--brown-mid);
+    }
+
+    /* ----------------------------------------------------------------
+       Cards
+    ---------------------------------------------------------------- */
+    .card {
+      background: var(--cream);
+      border: var(--border);
+      box-shadow: var(--shadow);
+      padding: 1.5rem;
+    }
+
+    .card-accent {
+      border-left: 5px solid var(--green);
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+
+    .card .card-tag {
+      display: inline-block;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.5rem;
+      border: 1px solid var(--brown);
+      margin-bottom: 0.75rem;
+    }
+
+    .card h3 {
+      margin-bottom: 0.6rem;
+    }
+
+    .card p {
+      font-size: 0.875rem;
+      color: var(--brown-mid);
+      max-width: none;
+    }
+
+    .card .research-note {
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--brown);
+      font-size: 0.75rem;
+      color: var(--brown-mid);
+    }
+
+    /* ----------------------------------------------------------------
+       Nav
+    ---------------------------------------------------------------- */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--cream);
+      border-bottom: var(--border);
+      padding: 0.875rem 0;
+      background-image:
+        linear-gradient(var(--grid-color) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+      background-size: 32px 32px;
+    }
+
+    nav .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .nav-logo {
+      font-size: 1.1rem;
+      font-weight: 700;
+      text-decoration: none;
+      color: var(--brown);
+    }
+
+    .nav-logo span {
+      font-size: 1.3rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.8rem;
+      font-weight: 500;
+      text-decoration: none;
+      letter-spacing: 0.05em;
+    }
+
+    .nav-links a:hover {
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .nav-cta {
+      font-size: 0.75rem;
+    }
+
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+    }
+
+    /* ----------------------------------------------------------------
+       Hero
+    ---------------------------------------------------------------- */
+    #hero {
+      padding: 6rem 0 5rem;
+      border-bottom: var(--border);
+    }
+
+    .hero-urdu {
+      font-size: clamp(3rem, 10vw, 6rem);
+      font-weight: 700;
+      line-height: 1;
+      margin-bottom: 0.25rem;
+      direction: rtl;
+      font-family: Georgia, 'Times New Roman', serif;
+      letter-spacing: 0;
+    }
+
+    .hero-english {
+      font-size: clamp(1.5rem, 4vw, 2.5rem);
+      font-weight: 700;
+      margin-bottom: 1.25rem;
+      letter-spacing: -0.02em;
+    }
+
+    .hero-tagline {
+      font-size: clamp(0.9rem, 2vw, 1.1rem);
+      color: var(--brown-mid);
+      max-width: 52ch;
+      margin-bottom: 2rem;
+      line-height: 1.7;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-bottom: 3rem;
+    }
+
+    .hero-meta {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      padding: 0.3rem 0.7rem;
+      border: 1px solid var(--brown);
+      background: var(--cream-dark);
+    }
+
+    .badge-dot {
+      width: 7px;
+      height: 7px;
+      background: var(--green-dark);
+      border: 1px solid var(--brown);
+      display: inline-block;
+    }
+
+    /* ----------------------------------------------------------------
+       Features
+    ---------------------------------------------------------------- */
+    #features .card-tag { background: var(--cream-dark); }
+
+    .feature-card-pause .card-tag { background: #D4EDD1; }
+    .feature-card-shorts .card-tag { background: var(--yellow); }
+    .feature-card-content .card-tag { background: #F2D4D4; }
+    .feature-card-dns .card-tag { background: #D4E8F2; }
+
+    /* ----------------------------------------------------------------
+       Philosophy
+    ---------------------------------------------------------------- */
+    #philosophy {
+      background: var(--brown);
+      color: var(--cream);
+      background-image:
+        linear-gradient(rgba(245,240,232,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(245,240,232,0.04) 1px, transparent 1px);
+      background-size: 32px 32px;
+    }
+
+    #philosophy .section-label {
+      background: var(--cream);
+      color: var(--brown);
+      border-color: var(--cream);
+    }
+
+    #philosophy h2 { color: var(--cream); }
+
+    #philosophy p {
+      color: rgba(245, 240, 232, 0.8);
+      max-width: 60ch;
+    }
+
+    .principle-list {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1rem;
+      margin-top: 2.5rem;
+    }
+
+    .principle-list li {
+      border: 1px solid rgba(245, 240, 232, 0.25);
+      padding: 1rem 1.25rem;
+      font-size: 0.875rem;
+      line-height: 1.6;
+    }
+
+    .principle-list li strong {
+      display: block;
+      margin-bottom: 0.3rem;
+      color: var(--green);
+      font-size: 0.8rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .philosophy-quote {
+      margin-top: 3rem;
+      padding: 1.5rem 2rem;
+      border-left: 4px solid var(--green);
+      background: rgba(168, 213, 162, 0.08);
+    }
+
+    .philosophy-quote p {
+      font-size: 1rem;
+      font-style: italic;
+      color: var(--cream);
+      max-width: 60ch;
+    }
+
+    .philosophy-quote cite {
+      display: block;
+      margin-top: 0.75rem;
+      font-size: 0.75rem;
+      color: rgba(245, 240, 232, 0.5);
+      font-style: normal;
+    }
+
+    /* ----------------------------------------------------------------
+       Screenshots placeholder
+    ---------------------------------------------------------------- */
+    #screenshots .screenshot-row {
+      display: flex;
+      gap: 1.25rem;
+      margin-top: 2.5rem;
+      overflow-x: auto;
+      padding-bottom: 0.5rem;
+    }
+
+    .screenshot-frame {
+      flex: 0 0 180px;
+      height: 320px;
+      border: var(--border);
+      box-shadow: var(--shadow);
+      background: var(--cream-dark);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      padding: 1rem;
+    }
+
+    .screenshot-frame .screen-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-align: center;
+      color: var(--brown-mid);
+    }
+
+    .screen-icon {
+      width: 48px;
+      height: 48px;
+      border: var(--border);
+      background: var(--cream);
+      display: grid;
+      place-items: center;
+      font-size: 1.25rem;
+    }
+
+    .screenshot-note {
+      margin-top: 1.5rem;
+      font-size: 0.8rem;
+      color: var(--brown-mid);
+    }
+
+    /* ----------------------------------------------------------------
+       How to Install
+    ---------------------------------------------------------------- */
+    #install .install-steps {
+      margin-top: 2.5rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .install-step {
+      border: var(--border);
+      box-shadow: var(--shadow-sm);
+      padding: 1.25rem;
+      background: var(--cream);
+    }
+
+    .install-step .step-num {
+      display: inline-block;
+      width: 28px;
+      height: 28px;
+      border: var(--border);
+      background: var(--brown);
+      color: var(--cream);
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-align: center;
+      line-height: 26px;
+      margin-bottom: 0.75rem;
+    }
+
+    .install-step h3 {
+      font-size: 0.9rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .install-step p {
+      font-size: 0.8rem;
+      color: var(--brown-mid);
+      max-width: none;
+    }
+
+    .play-protect-note {
+      margin-top: 2rem;
+      border: var(--border);
+      box-shadow: var(--shadow-sm);
+      padding: 1.25rem 1.5rem;
+      background: var(--yellow);
+    }
+
+    .play-protect-note h3 {
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .play-protect-note p {
+      font-size: 0.8rem;
+      color: var(--brown-mid);
+      max-width: 65ch;
+    }
+
+    .install-cta {
+      margin-top: 2.5rem;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    /* ----------------------------------------------------------------
+       Privacy Section
+    ---------------------------------------------------------------- */
+    #privacy .privacy-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1rem;
+      margin-top: 2.5rem;
+    }
+
+    .privacy-item {
+      border: var(--border);
+      padding: 1rem 1.25rem;
+      background: var(--cream);
+    }
+
+    .privacy-item .pi-title {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+    }
+
+    .privacy-item p {
+      font-size: 0.8rem;
+      color: var(--brown-mid);
+      max-width: none;
+    }
+
+    .privacy-yes { border-left: 4px solid var(--green-dark); }
+    .privacy-no { border-left: 4px solid var(--red); }
+
+    /* ----------------------------------------------------------------
+       Footer
+    ---------------------------------------------------------------- */
+    footer {
+      border-top: var(--border);
+      padding: 3rem 0;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-brand .brand-name {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+    }
+
+    .footer-brand p {
+      font-size: 0.8rem;
+      color: var(--brown-mid);
+      max-width: 35ch;
+    }
+
+    .footer-links h4 {
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+
+    .footer-links ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .footer-links a {
+      font-size: 0.8rem;
+      color: var(--brown-mid);
+    }
+
+    .footer-bottom {
+      margin-top: 2.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(45, 43, 40, 0.2);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-bottom p {
+      font-size: 0.75rem;
+      color: var(--brown-mid);
+      max-width: none;
+    }
+
+    /* ----------------------------------------------------------------
+       Utility
+    ---------------------------------------------------------------- */
+    .mt-1 { margin-top: 0.5rem; }
+    .mt-2 { margin-top: 1rem; }
+    .mt-3 { margin-top: 1.5rem; }
+    .mt-4 { margin-top: 2rem; }
+
+    .text-muted { color: var(--brown-mid); }
+    .text-small { font-size: 0.8rem; }
+
+    .highlight {
+      background: var(--green);
+      padding: 0 0.2em;
+    }
+
+    /* ----------------------------------------------------------------
+       Responsive
+    ---------------------------------------------------------------- */
+    @media (max-width: 640px) {
+      section { padding: 3.5rem 0; }
+      #hero { padding: 4rem 0 3.5rem; }
+      .hero-actions { flex-direction: column; align-items: flex-start; }
+      .card-grid { grid-template-columns: 1fr; }
+      .principle-list { grid-template-columns: 1fr; }
+      .install-steps { grid-template-columns: 1fr; }
+      .footer-inner { flex-direction: column; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; }
+      .privacy-grid { grid-template-columns: 1fr; }
+      #screenshots .screenshot-row { gap: 0.75rem; }
+      .screenshot-frame { flex: 0 0 150px; height: 270px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ================================================================
+       Navigation
+  ================================================================ -->
+  <nav>
+    <div class="container">
+      <div class="nav-inner">
+        <a href="#" class="nav-logo"><span>فارغ</span> Faarigh</a>
+        <ul class="nav-links">
+          <li><a href="#features">Features</a></li>
+          <li><a href="#philosophy">Philosophy</a></li>
+          <li><a href="#install">Install</a></li>
+          <li><a href="#privacy">Privacy</a></li>
+        </ul>
+        <a href="https://github.com/rm-Umar/faarigh/releases/latest/download/app-release.apk" class="btn btn-primary nav-cta">Download APK</a>
+      </div>
+    </div>
+  </nav>
+
+
+  <!-- ================================================================
+       Hero
+  ================================================================ -->
+  <section id="hero">
+    <div class="container">
+      <div class="hero-urdu">فارغ</div>
+      <div class="hero-english">Faarigh</div>
+      <p class="hero-tagline">
+        An Android app for using your phone with intention.
+        Every intervention is a pause — never a block.
+        No accounts, no servers, no tracking. Everything stays on your device.
+      </p>
+      <div class="hero-actions">
+        <a href="https://github.com/rm-Umar/faarigh/releases/latest/download/app-release.apk" class="btn btn-primary">Download APK</a>
+        <a href="https://github.com/rm-Umar/faarigh" class="btn btn-secondary">View source on GitHub</a>
+      </div>
+      <div class="hero-meta">
+        <span class="hero-badge"><span class="badge-dot"></span> Android 8.0+</span>
+        <span class="hero-badge"><span class="badge-dot"></span> 100% on-device</span>
+        <span class="hero-badge"><span class="badge-dot"></span> Open source</span>
+        <span class="hero-badge"><span class="badge-dot"></span> No Play Store required</span>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================================================================
+       Features
+  ================================================================ -->
+  <section id="features">
+    <div class="container">
+      <div class="section-label">Tools</div>
+      <h2>Four research-backed modules</h2>
+      <p class="mt-2 text-muted text-small">
+        Each module can be enabled independently. None of them block access — they create a deliberate pause. You always have the final choice.
+      </p>
+
+      <div class="card-grid">
+
+        <div class="card card-accent feature-card-pause">
+          <span class="card-tag">App Pause</span>
+          <h3>Micro-interventions before you scroll</h3>
+          <p>
+            When you open a monitored app, a brief intervention plays before the app loads. Four techniques available: Simple Pause, Physiological Sigh, Cognitive Defusion, and Urge Surfing. You configure which apps and which technique.
+          </p>
+          <div class="research-note">
+            Research: Holte et al. (2023), PNAS — two-second friction reduces compulsive opens by 57%.
+          </div>
+        </div>
+
+        <div class="card card-accent feature-card-shorts">
+          <span class="card-tag">Shorts Blocker</span>
+          <h3>Step out of the infinite feed</h3>
+          <p>
+            Detects YouTube Shorts, Instagram Reels, and TikTok via the Accessibility Service. When you land in a short-form feed, the app gently redirects you. You can return immediately — the redirect is a pause, not a wall. No content is blocked.
+          </p>
+          <div class="research-note">
+            Detection is local — no network traffic is inspected or logged.
+          </div>
+        </div>
+
+        <div class="card card-accent feature-card-content">
+          <span class="card-tag">Content Awareness</span>
+          <h3>On-device NSFW detection</h3>
+          <p>
+            A quantized TensorFlow Lite model detects explicit images on screen. The model runs entirely on-device. No frames, metadata, or results are ever transmitted anywhere. No internet connection is required for this feature.
+          </p>
+          <div class="research-note">
+            Model inference runs locally via LiteRT. Zero data egress.
+          </div>
+        </div>
+
+        <div class="card card-accent feature-card-dns">
+          <span class="card-tag">DNS Filter</span>
+          <h3>Pi-hole style local VPN</h3>
+          <p>
+            Blocks ads, trackers, and telemetry at the DNS level using a local VPN. Your traffic is not routed through any external server — queries are intercepted and resolved on your device. Works across all apps system-wide.
+          </p>
+          <div class="research-note">
+            Bundled blocklists cover ads, trackers, telemetry, malware, and phishing domains.
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================================================================
+       Philosophy
+  ================================================================ -->
+  <section id="philosophy">
+    <div class="container">
+      <div class="section-label">Why it works differently</div>
+      <h2>Conscious choice, not prohibition</h2>
+      <p class="mt-2">
+        Most digital wellbeing tools are built on restriction — usage limits, app locks, screen time caps. Faarigh is built on deliberation. A two-second pause before you open Twitter is not the same as being locked out of Twitter, and the research shows it works better.
+      </p>
+
+      <ul class="principle-list">
+        <li>
+          <strong>Always an exit</strong>
+          Every intervention ends with the app opening. There are no permanent blocks, no lock-outs, no time limits. The friction is intentional and calibrated — not punitive.
+        </li>
+        <li>
+          <strong>No shame mechanics</strong>
+          No streaks. No scores. No notifications reminding you that you failed. No comparisons with other users.
+        </li>
+        <li>
+          <strong>Research-backed only</strong>
+          Each technique — the sigh, cognitive defusion, urge surfing — is drawn from published clinical or behavioral research. Nothing is invented.
+        </li>
+        <li>
+          <strong>Absolute privacy</strong>
+          No account. No server. No telemetry. No cloud backup. The database is local. The VPN is local. The AI model is local.
+        </li>
+        <li>
+          <strong>You are an adult</strong>
+          The app does not decide what is good for you. It creates space for you to decide. The pause is yours to use however you want.
+        </li>
+        <li>
+          <strong>Open source</strong>
+          Every line of code is readable. You do not have to trust the privacy claims — you can verify them.
+        </li>
+      </ul>
+
+      <div class="philosophy-quote">
+        <p>
+          "We found that a minimal two-second friction — a single screen before the target app launched — reduced mindless opens by 57% over four weeks, with no increase in frustration or app abandonment."
+        </p>
+        <cite>Holte, Ward, Oulasvirta, Kim — PNAS, 2023 (One Sec study)</cite>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ================================================================
+       Screenshots
+  ================================================================ -->
+  <section id="screenshots">
+    <div class="container">
+      <div class="section-label">Screens</div>
+      <h2>Clean. Purposeful. Retro.</h2>
+      <p class="mt-2 text-muted text-small">
+        Cream backgrounds, grid paper texture, monospace type. No rounded corners, no gradients, no dark patterns.
+      </p>
+
+      <div class="screenshot-row">
+        <div class="screenshot-frame">
+          <div class="screen-icon">#</div>
+          <span class="screen-label">Home</span>
+        </div>
+        <div class="screenshot-frame">
+          <div class="screen-icon">+</div>
+          <span class="screen-label">Toolkit</span>
+        </div>
+        <div class="screenshot-frame">
+          <div class="screen-icon">~</div>
+          <span class="screen-label">App Pause</span>
+        </div>
+        <div class="screenshot-frame">
+          <div class="screen-icon">*</div>
+          <span class="screen-label">DNS Filter</span>
+        </div>
+        <div class="screenshot-frame">
+          <div class="screen-icon">&gt;</div>
+          <span class="screen-label">Stats</span>
+        </div>
+      </div>
+
+      <p class="screenshot-note text-muted">
+        Screenshots coming with v0.1.0 public release.
+      </p>
+    </div>
+  </section>
+
+
+  <!-- ================================================================
+       Privacy
+  ================================================================ -->
+  <section id="privacy">
+    <div class="container">
+      <div class="section-label">Privacy</div>
+      <h2>What the app does and does not do</h2>
+      <p class="mt-2 text-muted text-small">
+        These are not policies — they are technical facts you can verify in the source code.
+      </p>
+
+      <div class="privacy-grid mt-4">
+        <div class="privacy-item privacy-yes">
+          <div class="pi-title">On-device only</div>
+          <p>All data — usage logs, intervention history, DNS query logs — is stored in a local Room database. Nothing is synced or backed up.</p>
+        </div>
+        <div class="privacy-item privacy-yes">
+          <div class="pi-title">No internet for core features</div>
+          <p>The NSFW detector, app interception, shorts blocker, and DNS filter all work with no internet connection. No INTERNET permission is used for these.</p>
+        </div>
+        <div class="privacy-item privacy-yes">
+          <div class="pi-title">Local VPN, no routing</div>
+          <p>The DNS VPN intercepts queries on the loopback interface. Your traffic is not routed through any external server or proxy.</p>
+        </div>
+        <div class="privacy-item privacy-yes">
+          <div class="pi-title">On-device AI inference</div>
+          <p>The TFLite NSFW model runs on your CPU. No frames are extracted, stored, or transmitted. Inference is local and ephemeral.</p>
+        </div>
+        <div class="privacy-item privacy-no">
+          <div class="pi-title">No account required</div>
+          <p>There is no sign-up, no login, no email address, no phone number. The app has no concept of a user account.</p>
+        </div>
+        <div class="privacy-item privacy-no">
+          <div class="pi-title">No analytics or telemetry</div>
+          <p>No analytics SDK, no crash reporter, no event tracking. The app does not phone home under any circumstances.</p>
+        </div>
+        <div class="privacy-item privacy-no">
+          <div class="pi-title">No Play Services</div>
+          <p>No Google Play Services, Firebase, or any Google SDK dependency. The app functions on de-Googled Android distributions.</p>
+        </div>
+        <div class="privacy-item privacy-no">
+          <div class="pi-title">No third-party servers</div>
+          <p>There are no backend servers, APIs, or cloud services associated with this app. There is nothing to breach.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================================================================
+       How to Install
+  ================================================================ -->
+  <section id="install">
+    <div class="container">
+      <div class="section-label">Install</div>
+      <h2>Sideload in four steps</h2>
+      <p class="mt-2 text-muted text-small">
+        Faarigh is distributed as a direct APK — no Play Store required. Requires Android 8.0 (API 26) or later.
+      </p>
+
+      <div class="install-steps">
+
+        <div class="install-step">
+          <div class="step-num">1</div>
+          <h3>Allow unknown sources</h3>
+          <p>Go to Settings &gt; Apps &gt; Special app access &gt; Install unknown apps. Enable it for your browser or file manager.</p>
+        </div>
+
+        <div class="install-step">
+          <div class="step-num">2</div>
+          <h3>Download the APK</h3>
+          <p>Download app-release.apk from the GitHub releases page directly on your device, or transfer it via USB.</p>
+        </div>
+
+        <div class="install-step">
+          <div class="step-num">3</div>
+          <h3>Open and install</h3>
+          <p>Open the downloaded file from your notification shade or file manager. Tap Install.</p>
+        </div>
+
+        <div class="install-step">
+          <div class="step-num">4</div>
+          <h3>Grant permissions</h3>
+          <p>The app will walk you through granting Accessibility Service access and Overlay permission. Both are required for the core features to work.</p>
+        </div>
+
+      </div>
+
+      <div class="play-protect-note">
+        <h3>About the Play Protect warning</h3>
+        <p>
+          When installing an APK outside the Play Store, Android shows: "This app was not verified by Google Play." This means Google has not reviewed this specific APK — it does not mean the app is malicious. Because Faarigh is fully open source, you can review every line of code before installing. To proceed: tap <strong>More details</strong> then <strong>Install anyway</strong>.
+        </p>
+      </div>
+
+      <div class="install-cta">
+        <a href="https://github.com/rm-Umar/faarigh/releases/latest/download/app-release.apk" class="btn btn-primary">Download APK</a>
+        <a href="https://github.com/rm-Umar/faarigh/releases" class="btn btn-secondary">All releases</a>
+      </div>
+
+      <div class="mt-4">
+        <p class="text-muted text-small">
+          F-Droid listing is planned. ADB install:
+        </p>
+        <pre class="mt-2">adb install -r app-release.apk</pre>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ================================================================
+       Footer
+  ================================================================ -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+
+        <div class="footer-brand">
+          <div class="brand-name">فارغ — Faarigh</div>
+          <p>Free from distraction. Unburdened by your phone.</p>
+          <p class="mt-2 text-small text-muted">Open source. Self-hostable. No accounts. No servers.</p>
+        </div>
+
+        <div class="footer-links">
+          <h4>Project</h4>
+          <ul>
+            <li><a href="https://github.com/rm-Umar/faarigh">GitHub</a></li>
+            <li><a href="https://github.com/rm-Umar/faarigh/releases">Releases</a></li>
+            <li><a href="https://github.com/rm-Umar/faarigh/issues">Issues</a></li>
+            <li><a href="https://github.com/rm-Umar/faarigh/blob/main/README.md">Documentation</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links">
+          <h4>Research</h4>
+          <ul>
+            <li><a href="https://www.pnas.org/doi/10.1073/pnas.2213465120" target="_blank" rel="noopener">PNAS 2023 — One Sec study</a></li>
+            <li><a href="https://www.science.org/doi/10.1126/science.aag0134" target="_blank" rel="noopener">Stanford — Physiological Sigh</a></li>
+            <li><a href="https://contextualscience.org/act" target="_blank" rel="noopener">ACT — Cognitive Defusion</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <p>Built by Umar. Open source. MIT License.</p>
+        <p>
+          <span class="hero-badge"><span class="badge-dot"></span> v0.1.0</span>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

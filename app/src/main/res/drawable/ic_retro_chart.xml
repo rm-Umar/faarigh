@@ -1,0 +1,65 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="96dp"
+    android:height="96dp"
+    android:viewportWidth="96"
+    android:viewportHeight="96">
+
+    <!-- Axes -->
+    <path
+        android:pathData="M16,12 L16,80 L84,80"
+        android:fillColor="#00000000"
+        android:strokeColor="#2D2B28"
+        android:strokeWidth="3"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
+
+    <!-- Bar 1 (shortest) -->
+    <path
+        android:pathData="M24,80 L24,58 L36,58 L36,80 Z"
+        android:fillColor="#4CAF50"
+        android:fillAlpha="0.6"
+        android:strokeColor="#2D2B28"
+        android:strokeWidth="2" />
+
+    <!-- Bar 2 (tallest) -->
+    <path
+        android:pathData="M40,80 L40,28 L52,28 L52,80 Z"
+        android:fillColor="#4CAF50"
+        android:fillAlpha="0.8"
+        android:strokeColor="#2D2B28"
+        android:strokeWidth="2" />
+
+    <!-- Bar 3 (medium) -->
+    <path
+        android:pathData="M56,80 L56,44 L68,44 L68,80 Z"
+        android:fillColor="#4CAF50"
+        android:fillAlpha="0.5"
+        android:strokeColor="#2D2B28"
+        android:strokeWidth="2" />
+
+    <!-- Bar 4 (tall) -->
+    <path
+        android:pathData="M72,80 L72,34 L84,34 L84,80 Z"
+        android:fillColor="#4CAF50"
+        android:fillAlpha="0.7"
+        android:strokeColor="#2D2B28"
+        android:strokeWidth="2" />
+
+    <!-- Grid lines -->
+    <path
+        android:pathData="M16,58 L84,58"
+        android:strokeColor="#7A756E"
+        android:strokeWidth="0.5"
+        android:strokeAlpha="0.3" />
+    <path
+        android:pathData="M16,44 L84,44"
+        android:strokeColor="#7A756E"
+        android:strokeWidth="0.5"
+        android:strokeAlpha="0.3" />
+    <path
+        android:pathData="M16,28 L84,28"
+        android:strokeColor="#7A756E"
+        android:strokeWidth="0.5"
+        android:strokeAlpha="0.3" />
+
+</vector>

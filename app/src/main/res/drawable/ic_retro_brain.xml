@@ -1,0 +1,66 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="96dp"
+    android:height="96dp"
+    android:viewportWidth="96"
+    android:viewportHeight="96">
+
+    <!-- Head silhouette -->
+    <path
+        android:pathData="M48,10 Q72,10 72,38 L72,48 Q72,60 64,68 L64,78 Q64,82 60,82 L36,82 Q32,82 32,78 L32,68 Q24,60 24,48 L24,38 Q24,10 48,10 Z"
+        android:fillColor="#00000000"
+        android:strokeColor="#2D2B28"
+        android:strokeWidth="3" />
+
+    <!-- Lightbulb body -->
+    <path
+        android:pathData="M42,36 Q42,26 48,26 Q54,26 54,36 Q54,42 52,46 L52,52 L44,52 L44,46 Q42,42 42,36 Z"
+        android:fillColor="#9C7EDB"
+        android:fillAlpha="0.3"
+        android:strokeColor="#9C7EDB"
+        android:strokeWidth="2" />
+
+    <!-- Lightbulb base lines -->
+    <path
+        android:pathData="M44,54 L52,54"
+        android:strokeColor="#9C7EDB"
+        android:strokeWidth="1.5" />
+    <path
+        android:pathData="M45,57 L51,57"
+        android:strokeColor="#9C7EDB"
+        android:strokeWidth="1.5" />
+
+    <!-- Lightbulb rays -->
+    <path
+        android:pathData="M48,20 L48,16"
+        android:strokeColor="#9C7EDB"
+        android:strokeWidth="1.5"
+        android:strokeLineCap="round" />
+    <path
+        android:pathData="M38,24 L35,21"
+        android:strokeColor="#9C7EDB"
+        android:strokeWidth="1.5"
+        android:strokeLineCap="round" />
+    <path
+        android:pathData="M58,24 L61,21"
+        android:strokeColor="#9C7EDB"
+        android:strokeWidth="1.5"
+        android:strokeLineCap="round" />
+    <path
+        android:pathData="M36,34 L32,34"
+        android:strokeColor="#9C7EDB"
+        android:strokeWidth="1.5"
+        android:strokeLineCap="round" />
+    <path
+        android:pathData="M60,34 L64,34"
+        android:strokeColor="#9C7EDB"
+        android:strokeWidth="1.5"
+        android:strokeLineCap="round" />
+
+    <!-- Neck -->
+    <path
+        android:pathData="M42,82 L42,88 L54,88 L54,82"
+        android:fillColor="#00000000"
+        android:strokeColor="#2D2B28"
+        android:strokeWidth="2" />
+
+</vector>

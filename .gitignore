@@ -1,0 +1,22 @@
+*.iml
+.gradle
+/local.properties
+/.idea
+.DS_Store
+/build
+/app/build
+/captures
+.externalNativeBuild
+.cxx
+local.properties
+
+# TFLite model (too large for git, will be downloaded)
+app/src/main/assets/nsfw_model.tflite
+
+# Release signing
+keystore.properties
+*.keystore
+*.jks
+keystore/
+.claude/
+.kotlin/

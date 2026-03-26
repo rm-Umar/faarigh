@@ -1,0 +1,63 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="96dp"
+    android:height="96dp"
+    android:viewportWidth="96"
+    android:viewportHeight="96">
+
+    <!-- Clock body -->
+    <path
+        android:pathData="M48,48 m-36,0 a36,36 0,1 1,72 0 a36,36 0,1 1,-72 0"
+        android:fillColor="#FFB74D"
+        android:fillAlpha="0.15"
+        android:strokeColor="#2D2B28"
+        android:strokeWidth="3" />
+
+    <!-- Inner circle -->
+    <path
+        android:pathData="M48,48 m-30,0 a30,30 0,1 1,60 0 a30,30 0,1 1,-60 0"
+        android:fillColor="#00000000"
+        android:strokeColor="#2D2B28"
+        android:strokeWidth="1.5" />
+
+    <!-- Hour marks -->
+    <path
+        android:pathData="M48,16 L48,22"
+        android:strokeColor="#2D2B28"
+        android:strokeWidth="2.5"
+        android:strokeLineCap="round" />
+    <path
+        android:pathData="M48,74 L48,80"
+        android:strokeColor="#2D2B28"
+        android:strokeWidth="2.5"
+        android:strokeLineCap="round" />
+    <path
+        android:pathData="M16,48 L22,48"
+        android:strokeColor="#2D2B28"
+        android:strokeWidth="2.5"
+        android:strokeLineCap="round" />
+    <path
+        android:pathData="M74,48 L80,48"
+        android:strokeColor="#2D2B28"
+        android:strokeWidth="2.5"
+        android:strokeLineCap="round" />
+
+    <!-- Hour hand -->
+    <path
+        android:pathData="M48,48 L48,30"
+        android:strokeColor="#FFB74D"
+        android:strokeWidth="3.5"
+        android:strokeLineCap="round" />
+
+    <!-- Minute hand -->
+    <path
+        android:pathData="M48,48 L64,38"
+        android:strokeColor="#2D2B28"
+        android:strokeWidth="2.5"
+        android:strokeLineCap="round" />
+
+    <!-- Center dot -->
+    <path
+        android:pathData="M48,48 m-3,0 a3,3 0,1 1,6 0 a3,3 0,1 1,-6 0"
+        android:fillColor="#FFB74D" />
+
+</vector>

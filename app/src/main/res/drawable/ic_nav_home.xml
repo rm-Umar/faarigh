@@ -1,0 +1,43 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+
+    <!-- Roof -->
+    <path
+        android:pathData="M12,3 L4,10 L6,10 L6,20 L18,20 L18,10 L20,10 Z"
+        android:fillColor="#A8D5A2"
+        android:fillAlpha="0.25"
+        android:strokeColor="#2D2B28"
+        android:strokeWidth="1" />
+
+    <!-- Door -->
+    <path
+        android:pathData="M10,14 L14,14 L14,20 L10,20 Z"
+        android:fillColor="#A8D5A2"
+        android:strokeColor="#2D2B28"
+        android:strokeWidth="0.6" />
+
+    <!-- Window left -->
+    <path
+        android:pathData="M7,11 L9,11 L9,13 L7,13 Z"
+        android:fillColor="#A8D5A2"
+        android:strokeColor="#2D2B28"
+        android:strokeWidth="0.5" />
+
+    <!-- Window right -->
+    <path
+        android:pathData="M15,11 L17,11 L17,13 L15,13 Z"
+        android:fillColor="#A8D5A2"
+        android:strokeColor="#2D2B28"
+        android:strokeWidth="0.5" />
+
+    <!-- Chimney pixel -->
+    <path
+        android:pathData="M16,4 L18,4 L18,8 L16,8 Z"
+        android:fillColor="#A8D5A2"
+        android:strokeColor="#2D2B28"
+        android:strokeWidth="0.5" />
+
+</vector>

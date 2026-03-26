@@ -1,0 +1,49 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="120dp"
+    android:height="120dp"
+    android:viewportWidth="120"
+    android:viewportHeight="120">
+
+    <!-- Phone body -->
+    <path
+        android:pathData="M35,15 L85,15 Q90,15 90,20 L90,100 Q90,105 85,105 L35,105 Q30,105 30,100 L30,20 Q30,15 35,15 Z"
+        android:fillColor="#00000000"
+        android:strokeColor="#2D2B28"
+        android:strokeWidth="3" />
+
+    <!-- Screen -->
+    <path
+        android:pathData="M38,25 L82,25 L82,80 L38,80 Z"
+        android:fillColor="#F5F0E8"
+        android:strokeColor="#2D2B28"
+        android:strokeWidth="2" />
+
+    <!-- Screen content lines -->
+    <path
+        android:pathData="M45,40 L75,40"
+        android:strokeColor="#7A756E"
+        android:strokeWidth="2" />
+    <path
+        android:pathData="M45,50 L70,50"
+        android:strokeColor="#7A756E"
+        android:strokeWidth="2" />
+    <path
+        android:pathData="M45,60 L65,60"
+        android:strokeColor="#7A756E"
+        android:strokeWidth="2" />
+
+    <!-- Home button -->
+    <path
+        android:pathData="M60,92 m-7,0 a7,7 0,1 1,14 0 a7,7 0,1 1,-14 0"
+        android:fillColor="#00000000"
+        android:strokeColor="#2D2B28"
+        android:strokeWidth="2" />
+
+    <!-- Speaker grille -->
+    <path
+        android:pathData="M52,20 L68,20"
+        android:strokeColor="#2D2B28"
+        android:strokeWidth="2"
+        android:strokeLineCap="round" />
+
+</vector>

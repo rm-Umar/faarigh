@@ -1,0 +1,22 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+
+    <!-- Pixel-art phone/screen with block symbol -->
+    <!-- Phone body -->
+    <path
+        android:pathData="M6,2 h12 v20 h-12 z"
+        android:fillColor="#FF9C7E"
+        android:fillAlpha="0.3" />
+    <!-- Phone border -->
+    <path
+        android:pathData="M6,2 h12 v2 h-12 z M6,20 h12 v2 h-12 z M6,2 h2 v20 h-2 z M16,2 h2 v20 h-2 z"
+        android:fillColor="#FF9C7E" />
+    <!-- Block slash -->
+    <path
+        android:pathData="M10,6 h2 v2 h-2 z M12,8 h2 v2 h-2 z M10,10 h2 v2 h-2 z M12,12 h2 v2 h-2 z M10,14 h2 v2 h-2 z M12,16 h2 v2 h-2 z"
+        android:fillColor="#FF9C7E" />
+
+</vector>

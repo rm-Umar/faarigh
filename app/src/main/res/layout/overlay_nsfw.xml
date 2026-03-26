@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/overlay_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FF0D1B2A"
+    android:clickable="true"
+    android:focusable="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="32dp">
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <!-- Warning icon area -->
+        <View
+            android:id="@+id/nsfw_circle"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_gravity="center"
+            android:background="@drawable/circle_nsfw_warning" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="32dp" />
+
+        <!-- Main message -->
+        <TextView
+            android:id="@+id/txt_nsfw_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Explicit content detected"
+            android:textColor="#FFFFFF"
+            android:textSize="22sp"
+            android:fontFamily="sans-serif-medium" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="12dp" />
+
+        <TextView
+            android:id="@+id/txt_nsfw_body"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="This is a moment to check in with yourself.\nIs this what you consciously want to be doing right now?"
+            android:textColor="#99FFFFFF"
+            android:textSize="15sp"
+            android:fontFamily="sans-serif-light"
+            android:lineSpacingExtra="4dp"
+            android:paddingHorizontal="16dp" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <!-- Decision buttons -->
+        <LinearLayout
+            android:id="@+id/nsfw_decision_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:paddingBottom="48dp">
+
+            <!-- Go back (primary) -->
+            <Button
+                android:id="@+id/btn_nsfw_go_back"
+                android:layout_width="280dp"
+                android:layout_height="56dp"
+                android:text="No, take me back"
+                android:textSize="16sp"
+                android:backgroundTint="#2D9596"
+                android:textColor="#FFFFFF"
+                android:layout_marginBottom="12dp" />
+
+            <!-- Proceed (muted) -->
+            <Button
+                android:id="@+id/btn_nsfw_proceed"
+                android:layout_width="280dp"
+                android:layout_height="48dp"
+                android:text="Yes, I'm choosing this consciously"
+                android:textSize="13sp"
+                android:backgroundTint="#1B2838"
+                android:textColor="#66FFFFFF"
+                android:layout_marginBottom="16dp" />
+
+            <!-- False positive report -->
+            <TextView
+                android:id="@+id/btn_nsfw_false_positive"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Not explicit — this is a mistake"
+                android:textSize="13sp"
+                android:textColor="#55FFFFFF"
+                android:padding="12dp"
+                android:clickable="true"
+                android:focusable="true" />
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>

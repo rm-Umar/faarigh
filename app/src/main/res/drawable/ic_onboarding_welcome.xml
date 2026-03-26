@@ -1,0 +1,102 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="200dp"
+    android:height="200dp"
+    android:viewportWidth="200"
+    android:viewportHeight="200">
+
+    <!-- Background circle -->
+    <path
+        android:pathData="M100,100 m-80,0 a80,80 0,1 1,160 0 a80,80 0,1 1,-160 0"
+        android:fillColor="#F5F0E8"
+        android:fillAlpha="0.5" />
+
+    <!-- Phone body -->
+    <path
+        android:pathData="M70,50 L130,50 Q135,50 135,55 L135,155 Q135,160 130,160 L70,160 Q65,160 65,155 L65,55 Q65,50 70,50 Z"
+        android:fillColor="#F5F0E8"
+        android:strokeColor="#2D2B28"
+        android:strokeWidth="3" />
+
+    <!-- Phone screen -->
+    <path
+        android:pathData="M73,62 L127,62 L127,138 L73,138 Z"
+        android:fillColor="#FFFFFF"
+        android:strokeColor="#2D2B28"
+        android:strokeWidth="2" />
+
+    <!-- Screen content - heart -->
+    <path
+        android:pathData="M100,90 L92,82 Q86,76 92,70 Q98,64 100,72 Q102,64 108,70 Q114,76 108,82 Z"
+        android:fillColor="#4CAF50"
+        android:fillAlpha="0.6"
+        android:strokeColor="#4CAF50"
+        android:strokeWidth="1.5" />
+
+    <!-- Screen content lines -->
+    <path
+        android:pathData="M85,102 L115,102"
+        android:strokeColor="#7A756E"
+        android:strokeWidth="2"
+        android:strokeLineCap="round" />
+    <path
+        android:pathData="M88,110 L112,110"
+        android:strokeColor="#7A756E"
+        android:strokeWidth="2"
+        android:strokeLineCap="round" />
+    <path
+        android:pathData="M92,118 L108,118"
+        android:strokeColor="#7A756E"
+        android:strokeWidth="1.5"
+        android:strokeLineCap="round" />
+
+    <!-- Speaker -->
+    <path
+        android:pathData="M92,56 L108,56"
+        android:strokeColor="#2D2B28"
+        android:strokeWidth="2"
+        android:strokeLineCap="round" />
+
+    <!-- Home button -->
+    <path
+        android:pathData="M100,150 m-5,0 a5,5 0,1 1,10 0 a5,5 0,1 1,-10 0"
+        android:fillColor="#00000000"
+        android:strokeColor="#2D2B28"
+        android:strokeWidth="1.5" />
+
+    <!-- Floating star above phone -->
+    <path
+        android:pathData="M100,28 L103,36 L112,36 L105,41 L108,50 L100,44 L92,50 L95,41 L88,36 L97,36 Z"
+        android:fillColor="#9C7EDB"
+        android:fillAlpha="0.7"
+        android:strokeColor="#2D2B28"
+        android:strokeWidth="1.5" />
+
+    <!-- Small floating dots/sparkles -->
+    <path
+        android:pathData="M52,40 m-3,0 a3,3 0,1 1,6 0 a3,3 0,1 1,-6 0"
+        android:fillColor="#4CAF50"
+        android:fillAlpha="0.5" />
+    <path
+        android:pathData="M148,45 m-2,0 a2,2 0,1 1,4 0 a2,2 0,1 1,-4 0"
+        android:fillColor="#9C7EDB"
+        android:fillAlpha="0.5" />
+    <path
+        android:pathData="M45,70 m-2,0 a2,2 0,1 1,4 0 a2,2 0,1 1,-4 0"
+        android:fillColor="#FFB74D"
+        android:fillAlpha="0.5" />
+    <path
+        android:pathData="M155,75 m-3,0 a3,3 0,1 1,6 0 a3,3 0,1 1,-6 0"
+        android:fillColor="#4CAF50"
+        android:fillAlpha="0.4" />
+    <path
+        android:pathData="M140,30 m-2,0 a2,2 0,1 1,4 0 a2,2 0,1 1,-4 0"
+        android:fillColor="#FFB74D"
+        android:fillAlpha="0.6" />
+
+    <!-- Small heart floating -->
+    <path
+        android:pathData="M148,60 L145,57 Q143,55 145,53 Q147,51 148,54 Q149,51 151,53 Q153,55 151,57 Z"
+        android:fillColor="#9C7EDB"
+        android:fillAlpha="0.5" />
+
+</vector>

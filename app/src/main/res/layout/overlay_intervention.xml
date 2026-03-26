@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/overlay_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FF0D1B2A"
+    android:clickable="true"
+    android:focusable="true">
+
+    <!-- Main content centered -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="32dp">
+
+        <!-- Spacer to push content up slightly -->
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <!-- Breathing circle — large, centered -->
+        <FrameLayout
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_gravity="center">
+
+            <!-- Outer glow ring -->
+            <View
+                android:id="@+id/breathing_ring"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_gravity="center"
+                android:background="@drawable/circle_breathing_ring" />
+
+            <!-- Inner circle -->
+            <View
+                android:id="@+id/breathing_circle"
+                android:layout_width="160dp"
+                android:layout_height="160dp"
+                android:layout_gravity="center"
+                android:background="@drawable/circle_breathing_inner" />
+
+            <!-- Timer text inside circle -->
+            <TextView
+                android:id="@+id/txt_timer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text=""
+                android:textColor="#FFFFFF"
+                android:textSize="36sp"
+                android:fontFamily="sans-serif-light" />
+        </FrameLayout>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="24dp" />
+
+        <!-- Instruction text -->
+        <TextView
+            android:id="@+id/txt_instruction"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Take a moment..."
+            android:textColor="#E0E0E0"
+            android:textSize="22sp"
+            android:fontFamily="sans-serif-light"
+            android:letterSpacing="0.05" />
+
+        <!-- Subtle app name -->
+        <TextView
+            android:id="@+id/txt_app_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="8dp"
+            android:text=""
+            android:textColor="#66FFFFFF"
+            android:textSize="14sp"
+            android:fontFamily="sans-serif" />
+
+        <!-- Spacer -->
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <!-- Decision buttons (hidden during breathing) -->
+        <LinearLayout
+            android:id="@+id/decision_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:visibility="gone"
+            android:paddingBottom="48dp">
+
+            <TextView
+                android:id="@+id/txt_decision"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Do you want to continue?"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                android:fontFamily="sans-serif-light"
+                android:layout_marginBottom="32dp" />
+
+            <!-- Go back button (primary — we want to encourage this) -->
+            <Button
+                android:id="@+id/btn_go_back"
+                android:layout_width="280dp"
+                android:layout_height="56dp"
+                android:text="No, I'll do something else"
+                android:textSize="16sp"
+                android:backgroundTint="#2D9596"
+                android:textColor="#FFFFFF"
+                android:layout_marginBottom="12dp" />
+
+            <!-- Proceed button (secondary — muted) -->
+            <Button
+                android:id="@+id/btn_proceed"
+                android:layout_width="280dp"
+                android:layout_height="48dp"
+                android:text="Yes, open it"
+                android:textSize="14sp"
+                android:backgroundTint="#1B2838"
+                android:textColor="#88FFFFFF"
+                />
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>

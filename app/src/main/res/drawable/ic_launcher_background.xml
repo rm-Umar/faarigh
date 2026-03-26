@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Warm cream cardboard background -->
+    <path android:fillColor="#F5E6D3" android:pathData="M0,0h108v108H0z" />
+
+    <!-- Subtle grid paper lines (retro notebook feel) -->
+    <path android:fillColor="#E8D5BF" android:pathData="M0,18h108v1h-108z" />
+    <path android:fillColor="#E8D5BF" android:pathData="M0,36h108v1h-108z" />
+    <path android:fillColor="#E8D5BF" android:pathData="M0,54h108v1h-108z" />
+    <path android:fillColor="#E8D5BF" android:pathData="M0,72h108v1h-108z" />
+    <path android:fillColor="#E8D5BF" android:pathData="M0,90h108v1h-108z" />
+    <path android:fillColor="#E8D5BF" android:pathData="M18,0h1v108h-1z" />
+    <path android:fillColor="#E8D5BF" android:pathData="M36,0h1v108h-1z" />
+    <path android:fillColor="#E8D5BF" android:pathData="M54,0h1v108h-1z" />
+    <path android:fillColor="#E8D5BF" android:pathData="M72,0h1v108h-1z" />
+    <path android:fillColor="#E8D5BF" android:pathData="M90,0h1v108h-1z" />
+</vector>
