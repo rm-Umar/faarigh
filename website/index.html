@@ -437,17 +437,23 @@
     }
 
     .screenshot-frame {
-      flex: 0 0 180px;
-      height: 320px;
+      flex: 0 0 200px;
       border: var(--border);
       box-shadow: var(--shadow);
       background: var(--cream-dark);
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      gap: 0.75rem;
-      padding: 1rem;
+      gap: 0.5rem;
+      padding: 0.5rem;
+      overflow: hidden;
+    }
+
+    .screenshot-frame img {
+      width: 100%;
+      height: auto;
+      border-radius: 4px;
+      border: 1px solid var(--brown-light);
     }
 
     .screenshot-frame .screen-label {
@@ -457,16 +463,7 @@
       text-transform: uppercase;
       text-align: center;
       color: var(--brown-mid);
-    }
-
-    .screen-icon {
-      width: 48px;
-      height: 48px;
-      border: var(--border);
-      background: var(--cream);
-      display: grid;
-      place-items: center;
-      font-size: 1.25rem;
+      padding: 0.25rem 0;
     }
 
     .screenshot-note {
@@ -670,7 +667,7 @@
       .footer-bottom { flex-direction: column; align-items: flex-start; }
       .privacy-grid { grid-template-columns: 1fr; }
       #screenshots .screenshot-row { gap: 0.75rem; }
-      .screenshot-frame { flex: 0 0 150px; height: 270px; }
+      .screenshot-frame { flex: 0 0 160px; }
     }
   </style>
 </head>
@@ -840,35 +837,31 @@
       <div class="section-label">Screens</div>
       <h2>Clean. Purposeful. Retro.</h2>
       <p class="mt-2 text-muted text-small">
-        Cream backgrounds, grid paper texture, monospace type. No rounded corners, no gradients, no dark patterns.
+        Dark theme, grid paper texture, monospace type, pixel-art accents. No dark patterns — just clean design.
       </p>
 
       <div class="screenshot-row">
         <div class="screenshot-frame">
-          <div class="screen-icon">#</div>
+          <img src="screenshots/home.jpeg" alt="Faarigh Home Screen" loading="lazy">
           <span class="screen-label">Home</span>
         </div>
         <div class="screenshot-frame">
-          <div class="screen-icon">+</div>
+          <img src="screenshots/toolkit.jpeg" alt="Faarigh Toolkit" loading="lazy">
           <span class="screen-label">Toolkit</span>
         </div>
         <div class="screenshot-frame">
-          <div class="screen-icon">~</div>
+          <img src="screenshots/app-pause.jpeg" alt="App Pause Settings" loading="lazy">
           <span class="screen-label">App Pause</span>
         </div>
         <div class="screenshot-frame">
-          <div class="screen-icon">*</div>
+          <img src="screenshots/dns.jpeg" alt="DNS Filter" loading="lazy">
           <span class="screen-label">DNS Filter</span>
         </div>
         <div class="screenshot-frame">
-          <div class="screen-icon">&gt;</div>
+          <img src="screenshots/stats.jpeg" alt="Stats & Progress" loading="lazy">
           <span class="screen-label">Stats</span>
         </div>
       </div>
-
-      <p class="screenshot-note text-muted">
-        Screenshots coming with v0.1.0 public release.
-      </p>
     </div>
   </section>
 
