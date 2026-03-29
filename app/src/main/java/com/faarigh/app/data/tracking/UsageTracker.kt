@@ -315,14 +315,25 @@ class UsageTracker @Inject constructor(
         val (startMs, endMs) = dayRange(date)
         val perApp = getPerAppForegroundTime(startMs, endMs)
 
-        val breakdown = perApp
+        android.util.Log.d("UsageTracker", "getCategoryBreakdown perApp count=${perApp.size}, total=${perApp.values.sum()}ms")
+        perApp.entries.sortedByDescending { it.value }.take(10).forEach { (pkg, ms) ->
+            android.util.Log.d("UsageTracker", "  $pkg = ${ms}ms (${ms / 60000}min)")
+        }
+
+        val grouped = perApp
             .filter { it.value >= 10_000 } // Include apps used for 10+ seconds
             .entries
             .groupBy { categorizeApp(it.key) }
             .mapValues { (_, entries) ->
                 Duration.ofMillis(entries.sumOf { it.value })
             }
-            .toSortedMap(compareByDescending { it.length })
+        // Sort by duration descending using a LinkedHashMap to preserve order
+        val breakdown = grouped.entries
+            .sortedByDescending { it.value }
+            .associate { it.key to it.value }
+            .let { LinkedHashMap(it) }
+
+        android.util.Log.d("UsageTracker", "Category breakdown: $breakdown")
 
         emit(breakdown)
     }.flowOn(Dispatchers.IO)
@@ -420,7 +431,21 @@ class UsageTracker @Inject constructor(
         return counts
     }
 
-    private fun categorizeApp(packageName: String): String {
+    /**
+     * Get today's total foreground time for all apps in the given category.
+     * Synchronous — must be called from a background thread.
+     */
+    fun getCategoryUsageTodayMs(category: String): Long {
+        if (!hasUsageStatsPermission()) return 0L
+        val (startMs, endMs) = dayRange(LocalDate.now())
+        val perApp = getPerAppForegroundTime(startMs, endMs)
+        return perApp
+            .filter { categorizeApp(it.key) == category }
+            .values
+            .sum()
+    }
+
+    fun categorizeApp(packageName: String): String {
         // First check hardcoded lists — these override system categories
         val inSocial = packageName in SOCIAL_MEDIA_PACKAGES
         val inEntertainment = packageName in ENTERTAINMENT_PACKAGES

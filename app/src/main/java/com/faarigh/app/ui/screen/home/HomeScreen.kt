@@ -330,7 +330,8 @@ fun HomeScreen(
                                     fontFamily = MonospaceFamily,
                                     fontSize = 10.sp,
                                     color = MaterialTheme.colorScheme.onSurfaceVariant,
-                                    modifier = Modifier.width(40.dp),
+                                    modifier = Modifier.width(52.dp),
+                                    maxLines = 1,
                                 )
                             }
                         }
@@ -369,13 +370,14 @@ fun HomeScreen(
                                 verticalAlignment = Alignment.CenterVertically,
                             ) {
                                 Text(
-                                    cat.take(12),
+                                    cat,
                                     fontFamily = MonospaceFamily,
-                                    fontSize = 10.sp,
+                                    fontSize = 9.sp,
                                     color = accent,
                                     modifier = Modifier.width(90.dp),
+                                    maxLines = 1,
                                 )
-                                Spacer(Modifier.width(8.dp))
+                                Spacer(Modifier.width(4.dp))
                                 Box(
                                     modifier = Modifier
                                         .weight(1f)
@@ -396,7 +398,8 @@ fun HomeScreen(
                                     fontFamily = MonospaceFamily,
                                     fontSize = 10.sp,
                                     color = MaterialTheme.colorScheme.onSurfaceVariant,
-                                    modifier = Modifier.width(40.dp),
+                                    modifier = Modifier.width(52.dp),
+                                    maxLines = 1,
                                 )
                             }
                         }

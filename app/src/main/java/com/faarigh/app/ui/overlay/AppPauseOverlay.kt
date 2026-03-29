@@ -13,6 +13,7 @@ import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -272,6 +273,29 @@ fun AppPauseOverlay(
                         textAlign = TextAlign.Center,
                         lineHeight = promptFontSize * 1.4f,
                         modifier = Modifier.fillMaxWidth(),
+                    )
+                }
+            }
+
+            // ── Early "Go back" button (visible during breathing) ──
+            AnimatedVisibility(
+                visible = !breathingComplete,
+                enter = fadeIn(tween(600)),
+                exit = fadeOut(tween(300)),
+            ) {
+                Column(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                ) {
+                    Spacer(Modifier.height(32.dp))
+                    Text(
+                        "\u2190 Go back",
+                        fontFamily = RetroFont,
+                        fontSize = 13.sp,
+                        color = TextMuted.copy(alpha = 0.45f),
+                        modifier = Modifier
+                            .clickable(onClick = onCancel)
+                            .padding(horizontal = 16.dp, vertical = 10.dp),
                     )
                 }
             }

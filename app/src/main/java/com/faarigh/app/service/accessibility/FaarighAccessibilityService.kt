@@ -14,6 +14,7 @@ import com.faarigh.app.data.preferences.ModulePreferences
 import com.faarigh.app.data.repository.AppInterceptionRepository
 import com.faarigh.app.data.repository.AppScheduleRepository
 import com.faarigh.app.data.repository.UsageRepository
+import com.faarigh.app.ui.overlay.BreathPhase
 import com.faarigh.app.ui.overlay.BreathingPattern
 import com.faarigh.app.service.content.NsfwClassifier
 import java.util.Calendar
@@ -36,6 +37,7 @@ class FaarighAccessibilityService : AccessibilityService() {
     companion object {
         private const val TAG = "FaarighA11y"
         private const val NSFW_ALLOW_COOLDOWN_MS = 1_800_000L // 30 min after user allows
+        private const val CATEGORY_LIMIT_COOLDOWN_MS = 3_600_000L // 1 hour after user continues past limit
 
         private val IGNORED_PACKAGES = setOf(
             "com.android.systemui",
@@ -67,6 +69,7 @@ class FaarighAccessibilityService : AccessibilityService() {
         fun modulePreferences(): ModulePreferences
         fun interventionEventDao(): InterventionEventDao
         fun appScheduleRepository(): AppScheduleRepository
+        fun usageTracker(): com.faarigh.app.data.tracking.UsageTracker
     }
 
     private val serviceScope = CoroutineScope(SupervisorJob() + Dispatchers.Main)
@@ -77,6 +80,7 @@ class FaarighAccessibilityService : AccessibilityService() {
     private lateinit var modulePrefs: ModulePreferences
     private lateinit var interventionDao: InterventionEventDao
     private lateinit var appScheduleRepo: AppScheduleRepository
+    private lateinit var usageTracker: com.faarigh.app.data.tracking.UsageTracker
 
     private val appInterceptor = AppInterceptor()
     private val shortsDetector = ShortsDetector()
@@ -147,6 +151,7 @@ class FaarighAccessibilityService : AccessibilityService() {
         modulePrefs = entryPoint.modulePreferences()
         interventionDao = entryPoint.interventionEventDao()
         appScheduleRepo = entryPoint.appScheduleRepository()
+        usageTracker = entryPoint.usageTracker()
 
         overlayManager = OverlayManager(this)
 
@@ -367,6 +372,9 @@ class FaarighAccessibilityService : AccessibilityService() {
             return
         }
 
+        // ── Category daily limit check ──
+        if (checkCategoryLimit(packageName)) return
+
         if (shortsBlockingEnabled && packageName in shortsBlockerApps && packageName in ShortsDetector.FULL_SHORT_FORM_PACKAGES) {
             if (appInterceptor.shouldIntercept(packageName, targetPackages + ShortsDetector.FULL_SHORT_FORM_PACKAGES)) {
                 showIntervention(packageName, "TikTok")
@@ -383,6 +391,92 @@ class FaarighAccessibilityService : AccessibilityService() {
         if (nsfwScanningEnabled && !overlayManager.isShowing) {
             maybeRunNsfwScan(packageName)
         }
+    }
+
+    /**
+     * Check if the app's category has exceeded its daily limit.
+     * Returns true if the limit was hit and an overlay was shown.
+     */
+    private fun checkCategoryLimit(packageName: String): Boolean {
+        try {
+            val category = usageTracker.categorizeApp(packageName)
+            if (category == "Other") return false // No limits for uncategorized apps
+
+            // Find the daily limit schedule for this category
+            val limitSchedule = activeSchedules.find {
+                it.type == "daily_limit" && it.appLabel == "Category:$category"
+            } ?: return false
+
+            val limitMs = (limitSchedule.dailyLimitMin ?: 0) * 60_000L
+            if (limitMs <= 0) return false // Unlimited
+
+            // Check cooldown — don't re-show if user already continued past this limit recently
+            val cooldownKey = "cat_limit_$category"
+            val lastShown = categoryLimitCooldowns[cooldownKey] ?: 0L
+            if (System.currentTimeMillis() - lastShown < CATEGORY_LIMIT_COOLDOWN_MS) return false
+
+            // Get actual usage for this category today (runs on calling thread)
+            val usageMs = usageTracker.getCategoryUsageTodayMs(category)
+            if (usageMs < limitMs) return false
+
+            Log.d(TAG, "Category limit exceeded: $category used ${usageMs / 60000}min, limit ${limitSchedule.dailyLimitMin}min")
+
+            val usageFormatted = formatMs(usageMs)
+            val limitFormatted = formatMs(limitMs)
+
+            logInterventionEvent(
+                moduleId = "category_limit",
+                appPackage = packageName,
+                appName = getAppLabel(packageName),
+                action = "shown",
+            )
+
+            overlayManager.showCategoryLimitReached(
+                appLabel = getAppLabel(packageName),
+                category = category,
+                usageFormatted = usageFormatted,
+                limitFormatted = limitFormatted,
+                onGoBack = {
+                    logInterventionEvent("category_limit", packageName, getAppLabel(packageName), "turned_back")
+                    performGlobalAction(GLOBAL_ACTION_HOME)
+                },
+                onContinue = {
+                    logInterventionEvent("category_limit", packageName, getAppLabel(packageName), "allowed")
+                    categoryLimitCooldowns[cooldownKey] = System.currentTimeMillis()
+                },
+            )
+            return true
+        } catch (e: Exception) {
+            Log.w(TAG, "Category limit check failed: ${e.message}")
+            return false
+        }
+    }
+
+    private val categoryLimitCooldowns = mutableMapOf<String, Long>()
+
+    private fun scaleBreathingPattern(pattern: BreathingPattern, targetMs: Long): BreathingPattern {
+        if (targetMs <= 0 || pattern.totalDurationMs <= 0) return pattern
+        val scale = targetMs.toDouble() / pattern.totalDurationMs.toDouble()
+        val scaledPhases = pattern.phases.map { phase ->
+            BreathPhase(
+                label = phase.label,
+                durationMs = (phase.durationMs * scale).toLong().coerceAtLeast(200),
+                startScale = phase.startScale,
+                endScale = phase.endScale,
+            )
+        }
+        return BreathingPattern.Scaled(
+            name = pattern.name,
+            description = pattern.description,
+            totalDurationMs = scaledPhases.sumOf { it.durationMs },
+            phases = scaledPhases,
+        )
+    }
+
+    private fun formatMs(ms: Long): String {
+        val hours = ms / 3_600_000
+        val minutes = (ms % 3_600_000) / 60_000
+        return if (hours > 0) "${hours}h ${minutes}m" else "${minutes}m"
     }
 
     private fun handleWindowContentChanged(event: AccessibilityEvent, packageName: String) {
@@ -577,12 +671,15 @@ class FaarighAccessibilityService : AccessibilityService() {
             "box" -> BreathingPattern.BoxBreathing
             else -> BreathingPattern.SimplePause
         }
-        val breathingPattern = when (escalation.level) {
+        val basePattern = when (escalation.level) {
             EscalationTracker.Level.LIGHT -> userPattern
             EscalationTracker.Level.MEDIUM,
             EscalationTracker.Level.WIND_DOWN -> BreathingPattern.PhysiologicalSigh
             EscalationTracker.Level.DEEP -> BreathingPattern.BoxBreathing
         }
+        // Scale the pattern to match user's preferred duration
+        val targetMs = breathingDurationSec * 1000L
+        val breathingPattern = scaleBreathingPattern(basePattern, targetMs)
 
         // Get reflective prompt (only for MEDIUM/DEEP/WIND_DOWN)
         val promptText = when (escalation.level) {

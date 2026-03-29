@@ -61,6 +61,14 @@ sealed class BreathingPattern(
             BreathPhase("Breathe", 4000, 0.85f, 1.00f),
         ),
     )
+
+    /** A pattern with user-scaled phase durations. */
+    class Scaled(
+        name: String,
+        description: String,
+        totalDurationMs: Long,
+        phases: List<BreathPhase>,
+    ) : BreathingPattern(name, description, totalDurationMs, phases)
 }
 
 /**

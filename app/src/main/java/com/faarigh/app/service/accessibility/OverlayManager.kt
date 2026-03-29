@@ -15,6 +15,7 @@ import androidx.savedstate.SavedStateRegistryController
 import androidx.savedstate.SavedStateRegistryOwner
 import androidx.savedstate.setViewTreeSavedStateRegistryOwner
 import com.faarigh.app.ui.overlay.AppPauseOverlay
+import com.faarigh.app.ui.overlay.CategoryLimitOverlay
 import com.faarigh.app.ui.overlay.BreathingPattern
 import com.faarigh.app.ui.overlay.CognitiveDefusionOverlay
 import com.faarigh.app.ui.overlay.InterventionTechnique
@@ -134,6 +135,34 @@ class OverlayManager(private val service: AccessibilityService) {
                 onDismiss = {
                     dismiss()
                     onDismiss()
+                },
+            )
+        }
+    }
+
+    fun showCategoryLimitReached(
+        appLabel: String,
+        category: String,
+        usageFormatted: String,
+        limitFormatted: String,
+        onGoBack: () -> Unit,
+        onContinue: () -> Unit,
+    ) {
+        if (overlayView != null) return
+
+        showComposeOverlay {
+            CategoryLimitOverlay(
+                appLabel = appLabel,
+                category = category,
+                usageFormatted = usageFormatted,
+                limitFormatted = limitFormatted,
+                onGoBack = {
+                    dismiss()
+                    onGoBack()
+                },
+                onContinue = {
+                    dismiss()
+                    onContinue()
                 },
             )
         }
