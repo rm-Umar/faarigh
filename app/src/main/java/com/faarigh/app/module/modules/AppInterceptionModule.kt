@@ -55,17 +55,6 @@ class AppInterceptionModule @Inject constructor(
             valueLabel = { "${it.toInt()} min" },
             onValueChange = { prefs.setAppPauseCooldownMin(it.toInt()) },
         ),
-        ModuleConfigItem.Choice(
-            key = "breathing_pattern",
-            label = "Breathing pattern",
-            options = listOf(
-                "simple" to "Simple Pause",
-                "sigh" to "Physiological Sigh",
-                "box" to "Box Breathing",
-            ),
-            value = prefs.preferredBreathingPattern,
-            onSelect = { prefs.setPreferredBreathingPattern(it) },
-        ),
         ModuleConfigItem.Slider(
             key = "medium_threshold",
             label = "Medium escalation threshold",
@@ -76,6 +65,15 @@ class AppInterceptionModule @Inject constructor(
             onValueChange = { prefs.setMediumThresholdMin(it.toInt()) },
         ),
         ModuleConfigItem.Slider(
+            key = "medium_breathing",
+            label = "Medium breathing duration",
+            range = 5f..30f,
+            steps = 24,
+            value = prefs.mediumBreathingSec.map { it.toFloat() },
+            valueLabel = { "${it.toInt()}s" },
+            onValueChange = { prefs.setMediumBreathingSec(it.toInt()) },
+        ),
+        ModuleConfigItem.Slider(
             key = "deep_threshold",
             label = "Deep escalation threshold",
             range = 15f..120f,
@@ -84,9 +82,18 @@ class AppInterceptionModule @Inject constructor(
             valueLabel = { "${it.toInt()} min" },
             onValueChange = { prefs.setDeepThresholdMin(it.toInt()) },
         ),
+        ModuleConfigItem.Slider(
+            key = "deep_breathing",
+            label = "Deep breathing duration",
+            range = 10f..30f,
+            steps = 19,
+            value = prefs.deepBreathingSec.map { it.toFloat() },
+            valueLabel = { "${it.toInt()}s" },
+            onValueChange = { prefs.setDeepBreathingSec(it.toInt()) },
+        ),
         ModuleConfigItem.Info(
             key = "escalation_info",
-            label = "Mid-session check-in: the app will periodically check in during long sessions to help you stay aware of your usage and make conscious choices about continuing.",
+            label = "Light: first time opening an app today — simple pause.\nMedium: after cumulative usage exceeds the medium threshold — physiological sigh breathing.\nDeep: after cumulative usage exceeds the deep threshold — box breathing.\nThe app will also periodically check in during long sessions.",
         ),
     )
 

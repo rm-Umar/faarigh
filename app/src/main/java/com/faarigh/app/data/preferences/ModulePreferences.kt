@@ -29,7 +29,9 @@ class ModulePreferences @Inject constructor(
 
     private object Keys {
         // App Pause
-        val BREATHING_DURATION_SEC = intPreferencesKey("breathing_duration_sec")
+        val BREATHING_DURATION_SEC = intPreferencesKey("breathing_duration_sec") // LIGHT level
+        val MEDIUM_BREATHING_SEC = intPreferencesKey("medium_breathing_sec")
+        val DEEP_BREATHING_SEC = intPreferencesKey("deep_breathing_sec")
         val APP_PAUSE_COOLDOWN_MIN = intPreferencesKey("app_pause_cooldown_min")
         val APP_PAUSE_ENABLED = booleanPreferencesKey("app_pause_enabled")
 
@@ -75,11 +77,19 @@ class ModulePreferences @Inject constructor(
     // ── App Pause ───────────────────────────────────────────────────
 
     val breathingDurationSec: Flow<Int> = dataStore.data.map { it[Keys.BREATHING_DURATION_SEC] ?: 3 }
+    val mediumBreathingSec: Flow<Int> = dataStore.data.map { it[Keys.MEDIUM_BREATHING_SEC] ?: 10 }
+    val deepBreathingSec: Flow<Int> = dataStore.data.map { it[Keys.DEEP_BREATHING_SEC] ?: 16 }
     val appPauseCooldownMin: Flow<Int> = dataStore.data.map { it[Keys.APP_PAUSE_COOLDOWN_MIN] ?: 30 }
     val appPauseEnabled: Flow<Boolean> = dataStore.data.map { it[Keys.APP_PAUSE_ENABLED] ?: false }
 
     suspend fun setBreathingDurationSec(value: Int) {
-        dataStore.edit { it[Keys.BREATHING_DURATION_SEC] = value.coerceIn(1, 30) }
+        dataStore.edit { it[Keys.BREATHING_DURATION_SEC] = value.coerceIn(1, 10) }
+    }
+    suspend fun setMediumBreathingSec(value: Int) {
+        dataStore.edit { it[Keys.MEDIUM_BREATHING_SEC] = value.coerceIn(5, 30) }
+    }
+    suspend fun setDeepBreathingSec(value: Int) {
+        dataStore.edit { it[Keys.DEEP_BREATHING_SEC] = value.coerceIn(10, 30) }
     }
 
     suspend fun setAppPauseCooldownMin(value: Int) {

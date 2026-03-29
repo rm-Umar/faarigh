@@ -98,6 +98,8 @@ class FaarighAccessibilityService : AccessibilityService() {
     private var nsfwThreshold: Float = 0.70f
     private var scanCooldownMs: Long = 2000L
     private var breathingDurationSec: Int = 3
+    private var mediumBreathingSec: Int = 10
+    private var deepBreathingSec: Int = 16
     private var lastScanTime = 0L
     private var consecutiveCleanScans = 0
     private var isScanning = false
@@ -163,6 +165,8 @@ class FaarighAccessibilityService : AccessibilityService() {
         try {
             runBlocking {
                 breathingDurationSec = modulePrefs.breathingDurationSec.first()
+                mediumBreathingSec = modulePrefs.mediumBreathingSec.first()
+                deepBreathingSec = modulePrefs.deepBreathingSec.first()
                 nsfwThreshold = modulePrefs.nsfwThreshold.first()
                 scanCooldownMs = modulePrefs.nsfwScanIntervalMs.first()
                 nsfwScanningEnabled = modulePrefs.nsfwEnabled.first()
@@ -185,6 +189,12 @@ class FaarighAccessibilityService : AccessibilityService() {
         // Observe preference changes in real time
         serviceScope.launch {
             modulePrefs.breathingDurationSec.collectLatest { breathingDurationSec = it }
+        }
+        serviceScope.launch {
+            modulePrefs.mediumBreathingSec.collectLatest { mediumBreathingSec = it }
+        }
+        serviceScope.launch {
+            modulePrefs.deepBreathingSec.collectLatest { deepBreathingSec = it }
         }
         serviceScope.launch {
             modulePrefs.nsfwThreshold.collectLatest { nsfwThreshold = it }
@@ -677,8 +687,12 @@ class FaarighAccessibilityService : AccessibilityService() {
             EscalationTracker.Level.WIND_DOWN -> BreathingPattern.PhysiologicalSigh
             EscalationTracker.Level.DEEP -> BreathingPattern.BoxBreathing
         }
-        // Scale the pattern to match user's preferred duration
-        val targetMs = breathingDurationSec * 1000L
+        // Scale the pattern to the user's configured duration for this escalation level
+        val targetMs = when (escalation.level) {
+            EscalationTracker.Level.LIGHT -> breathingDurationSec
+            EscalationTracker.Level.MEDIUM, EscalationTracker.Level.WIND_DOWN -> mediumBreathingSec
+            EscalationTracker.Level.DEEP -> deepBreathingSec
+        } * 1000L
         val breathingPattern = scaleBreathingPattern(basePattern, targetMs)
 
         // Get reflective prompt (only for MEDIUM/DEEP/WIND_DOWN)
