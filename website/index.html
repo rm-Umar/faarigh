@@ -5,6 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>فارغ — Faarigh | Free from distraction</title>
   <meta name="description" content="Faarigh is an open-source Android app that helps you use your phone with intention. No accounts. No servers. No tracking.">
+  <link rel="icon" type="image/jpeg" href="logo.jpeg">
+  <meta property="og:image" content="logo.jpeg">
+  <meta property="og:title" content="Faarigh — Free from distraction">
+  <meta property="og:description" content="Open-source Android digital wellbeing toolkit. No accounts. No servers.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
@@ -245,6 +249,15 @@
       font-weight: 700;
       text-decoration: none;
       color: var(--brown);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .nav-logo img {
+      width: 32px;
+      height: 32px;
+      border-radius: 6px;
     }
 
     .nav-logo span {
@@ -691,7 +704,7 @@
   <nav>
     <div class="container">
       <div class="nav-inner">
-        <a href="#" class="nav-logo"><span>فارغ</span> Faarigh</a>
+        <a href="#" class="nav-logo"><img src="logo.jpeg" alt="Faarigh logo"><span>فارغ</span> Faarigh</a>
         <ul class="nav-links">
           <li><a href="#features">Features</a></li>
           <li><a href="#philosophy">Philosophy</a></li>
@@ -1007,7 +1020,7 @@
       <div class="footer-inner">
 
         <div class="footer-brand">
-          <div class="brand-name">فارغ — Faarigh</div>
+          <div class="brand-name" style="display:flex;align-items:center;gap:0.5rem;"><img src="logo.jpeg" alt="Faarigh" style="width:40px;height:40px;border-radius:8px;">فارغ — Faarigh</div>
           <p>Free from distraction. Unburdened by your phone.</p>
           <p class="mt-2 text-small text-muted">Open source. Self-hostable. No accounts. No servers.</p>
         </div>
