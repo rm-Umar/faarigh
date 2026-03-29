@@ -5,10 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>فارغ — Faarigh | Free from distraction</title>
   <meta name="description" content="Faarigh is an open-source Android app that helps you use your phone with intention. No accounts. No servers. No tracking.">
-  <link rel="icon" type="image/jpeg" href="logo.jpeg">
-  <meta property="og:image" content="logo.jpeg">
-  <meta property="og:title" content="Faarigh — Free from distraction">
-  <meta property="og:description" content="Open-source Android digital wellbeing toolkit. No accounts. No servers.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
@@ -249,15 +245,6 @@
       font-weight: 700;
       text-decoration: none;
       color: var(--brown);
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .nav-logo img {
-      width: 32px;
-      height: 32px;
-      border-radius: 6px;
     }
 
     .nav-logo span {
@@ -450,32 +437,17 @@
     }
 
     .screenshot-frame {
-      flex: 0 0 200px;
+      flex: 0 0 180px;
+      height: 320px;
       border: var(--border);
       box-shadow: var(--shadow);
-      background: #1a1a1a;
+      background: var(--cream-dark);
       display: flex;
       flex-direction: column;
       align-items: center;
-      border-radius: 16px;
-      overflow: hidden;
-    }
-
-    .screenshot-frame .screen-scroll {
-      width: 100%;
-      height: 400px;
-      overflow-y: auto;
-      scrollbar-width: none;
-    }
-
-    .screenshot-frame .screen-scroll::-webkit-scrollbar {
-      display: none;
-    }
-
-    .screenshot-frame img {
-      width: 100%;
-      height: auto;
-      display: block;
+      justify-content: center;
+      gap: 0.75rem;
+      padding: 1rem;
     }
 
     .screenshot-frame .screen-label {
@@ -485,9 +457,16 @@
       text-transform: uppercase;
       text-align: center;
       color: var(--brown-mid);
-      padding: 0.5rem 0;
-      background: var(--cream-dark);
-      width: 100%;
+    }
+
+    .screen-icon {
+      width: 48px;
+      height: 48px;
+      border: var(--border);
+      background: var(--cream);
+      display: grid;
+      place-items: center;
+      font-size: 1.25rem;
     }
 
     .screenshot-note {
@@ -691,8 +670,7 @@
       .footer-bottom { flex-direction: column; align-items: flex-start; }
       .privacy-grid { grid-template-columns: 1fr; }
       #screenshots .screenshot-row { gap: 0.75rem; }
-      .screenshot-frame { flex: 0 0 160px; }
-      .screenshot-frame .screen-scroll { height: 320px; }
+      .screenshot-frame { flex: 0 0 150px; height: 270px; }
     }
   </style>
 </head>
@@ -704,7 +682,7 @@
   <nav>
     <div class="container">
       <div class="nav-inner">
-        <a href="#" class="nav-logo"><img src="logo.jpeg" alt="Faarigh logo"><span>فارغ</span> Faarigh</a>
+        <a href="#" class="nav-logo"><span>فارغ</span> Faarigh</a>
         <ul class="nav-links">
           <li><a href="#features">Features</a></li>
           <li><a href="#philosophy">Philosophy</a></li>
@@ -862,41 +840,35 @@
       <div class="section-label">Screens</div>
       <h2>Clean. Purposeful. Retro.</h2>
       <p class="mt-2 text-muted text-small">
-        Dark theme, grid paper texture, monospace type, pixel-art accents. No dark patterns — just clean design.
+        Cream backgrounds, grid paper texture, monospace type. No rounded corners, no gradients, no dark patterns.
       </p>
 
       <div class="screenshot-row">
         <div class="screenshot-frame">
-          <div class="screen-scroll">
-            <img src="screenshots/home.jpeg" alt="Faarigh Home Screen" loading="lazy">
-          </div>
+          <div class="screen-icon">#</div>
           <span class="screen-label">Home</span>
         </div>
         <div class="screenshot-frame">
-          <div class="screen-scroll">
-            <img src="screenshots/toolkit.jpeg" alt="Faarigh Toolkit" loading="lazy">
-          </div>
+          <div class="screen-icon">+</div>
           <span class="screen-label">Toolkit</span>
         </div>
         <div class="screenshot-frame">
-          <div class="screen-scroll">
-            <img src="screenshots/app-pause.jpeg" alt="App Pause Settings" loading="lazy">
-          </div>
+          <div class="screen-icon">~</div>
           <span class="screen-label">App Pause</span>
         </div>
         <div class="screenshot-frame">
-          <div class="screen-scroll">
-            <img src="screenshots/dns.jpeg" alt="DNS Filter" loading="lazy">
-          </div>
+          <div class="screen-icon">*</div>
           <span class="screen-label">DNS Filter</span>
         </div>
         <div class="screenshot-frame">
-          <div class="screen-scroll">
-            <img src="screenshots/stats.jpeg" alt="Stats & Progress" loading="lazy">
-          </div>
+          <div class="screen-icon">&gt;</div>
           <span class="screen-label">Stats</span>
         </div>
       </div>
+
+      <p class="screenshot-note text-muted">
+        Screenshots coming with v0.1.0 public release.
+      </p>
     </div>
   </section>
 
@@ -1020,7 +992,7 @@
       <div class="footer-inner">
 
         <div class="footer-brand">
-          <div class="brand-name" style="display:flex;align-items:center;gap:0.5rem;"><img src="logo.jpeg" alt="Faarigh" style="width:40px;height:40px;border-radius:8px;">فارغ — Faarigh</div>
+          <div class="brand-name">فارغ — Faarigh</div>
           <p>Free from distraction. Unburdened by your phone.</p>
           <p class="mt-2 text-small text-muted">Open source. Self-hostable. No accounts. No servers.</p>
         </div>

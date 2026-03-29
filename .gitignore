@@ -18,5 +18,3 @@ keystore.properties
 *.keystore
 *.jks
 keystore/
-.claude/
-.kotlin/

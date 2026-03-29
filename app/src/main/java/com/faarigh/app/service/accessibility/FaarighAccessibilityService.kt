@@ -329,16 +329,7 @@ class FaarighAccessibilityService : AccessibilityService() {
             AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED -> {
                 currentForegroundPackage = packageName
                 consecutiveCleanScans = 0
-                // Only trigger intervention for Activity transitions,
-                // skip dialogs/sheets/popups (comments, share sheets, etc.)
-                val className = event.className?.toString() ?: ""
-                val isDialogOrPopup = className.contains("Dialog", ignoreCase = true) ||
-                    className.contains("Sheet", ignoreCase = true) ||
-                    className.contains("Popup", ignoreCase = true) ||
-                    className.contains("PopupWindow", ignoreCase = true)
-                if (!isDialogOrPopup) {
-                    handleWindowStateChanged(packageName)
-                }
+                handleWindowStateChanged(packageName)
             }
             AccessibilityEvent.TYPE_WINDOW_CONTENT_CHANGED -> {
                 handleWindowContentChanged(event, packageName)

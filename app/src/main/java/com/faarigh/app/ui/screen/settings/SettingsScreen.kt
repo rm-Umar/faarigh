@@ -210,7 +210,7 @@ fun SettingsScreen(onNavigateToLearn: () -> Unit = {}) {
                         textAlign = TextAlign.Center,
                     )
                     Spacer(Modifier.height(16.dp))
-                    Text("v0.1.0", fontFamily = MonospaceFamily, fontSize = 12.sp, color = MaterialTheme.colorScheme.outline)
+                    Text("v0.1.1", fontFamily = MonospaceFamily, fontSize = 12.sp, color = MaterialTheme.colorScheme.outline)
                 }
             }
         }
